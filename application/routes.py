@@ -61,3 +61,9 @@ def dashboard():
                             over_time_expenditure=json.dumps(over_time_expenditure),
                             dates_label =json.dumps(dates_label)
                         )
+
+if __name__ == "__main__":
+    app.run(host=os.environ.get(
+        "IP"), port=int(
+            os.environ.get(
+                "PORT")), debug=False)
