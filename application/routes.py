@@ -22,7 +22,21 @@ def add_expense():
         return redirect(url_for('index'))
     return render_template('add.html', title="Add expenses", form=form)
     
+@app.route('/edit/<int:entry_id>', methods=["GET", "POST"])
+def edit_entry(entry_id):
+    entry = IncomeExpenses.query.get_or_404(entry_id)
+    form = UserDataForm(obj=entry)
 
+    if form.validate_on_submit():
+        entry.type = form.type.data
+        entry.category = form.category.data
+        entry.amount = form.amount.data
+
+        db.session.commit()
+        flash(f"{form.type.data} has been updated", "success")
+        return redirect(url_for('index'))
+
+    return render_template('edit.html', title="Edit Entry", form=form)
 
 @app.route('/delete-post/<int:entry_id>')
 def delete(entry_id):

@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="col-xs-10 col-sm-6 col-md-6">
+    <h2>Edit Expenses Page</h2>
+    <div class="card card-style mb-2">
+        <div class="card-body">
+            <form action="" method="POST">
+                {{ form.csrf_token() }}
+                <fieldset class="form-group">
+                    <legend class="mb-4">Expenses And Incomes</legend>
+
+                    {{ form.hidden_tag() }}
+                    <label for="type">Type:</label>
+                    {{ form.type(class="form-control") }}
+                    <br>
+                    <label for="category">Category:</label>
+                    {{ form.category(class="form-control") }}
+                    <br>
+                    <label for="amount">Amount:</label>
+                    {{ form.amount(class="form-control") }}
+                    <br>
+                    <button type="submit">Edit Entry</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
